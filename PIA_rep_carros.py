@@ -8,6 +8,7 @@ def ventanaCarro():
 
 
 def ventanaCliente():
+    
     ventCliente=Tk()
     ventCliente.title('Registro cliente')
     ventCliente.geometry('700x600')
@@ -18,12 +19,18 @@ def ventanaCliente():
     lblCliente=Label(frameCliente, text="Nombre", width=20)
     lblCliente.grid(row=1,column=0,padx=5,pady=3)
 
+    def GuardarDatosCliente():
+        nombre=etyNombre.get()
+        print(nombre)
+
     etyNombre=Entry(frameCliente, width=30, background='grey',foreground='red')
     etyNombre.grid(row=2,column=0,padx=5,pady=3)
 
-    btnDatosCliente=Button(frameCliente,text="registrar cliente", width=12,height=9)
+    btnDatosCliente=Button(frameCliente,text="registrar cliente", width=12,height=9,command=GuardarDatosCliente)
     btnDatosCliente.grid(row=3,column=0,padx=5,pady=3)
 
+
+    
     
 
 
