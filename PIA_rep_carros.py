@@ -131,7 +131,7 @@ def ventanaCliente():
         cliente=[nombre,telefono,municipio,cp,colonia]
         lblTexto=Label(frameCliente, text="SE HAN GUARDADO LOS REGISTROS",font=('Arial',10),fg='red', width=50)
         lblTexto.place(x=100,y=200)
-        
+        #insercion de datos del cliente a la bd
         try:
             with sqlite3.connect('Reparacion_Autos.db') as conn:
                 mi_cursor=conn.cursor()
@@ -226,6 +226,8 @@ def ventanaReparacion():
         reparacion=[matricula,mecanico,fecha,tiempoRep]
         lblTexto=Label(frameReparacion, text="SE HAN GUARDADO LOS REGISTROS",font=('Arial',10),fg='red', width=50)
         lblTexto.place(x=100,y=200)
+        
+        #insercion de datos de la reparacion a la bd
         try:
             with sqlite3.connect('Reparacion_Autos.db') as conn:
                 mi_cursor=conn.cursor()
