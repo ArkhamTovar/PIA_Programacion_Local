@@ -47,6 +47,17 @@ def ventanaCarro():
         coche=[matricula,marca,color,modelo]
         lblTexto=Label(frameCarro, text="SE HAN GUARDADO LOS REGISTROS",font=('Arial',10),fg='red', width=50)
         lblTexto.place(x=100,y=200)
+        #insercion de datos del coche a la bd
+        try:
+            with sqlite3.connect('Reparacion_Autos.db') as conn:
+                mi_cursor=conn.cursor()
+                mi_cursor.execute('INSERT INTO coche VALUES(?,?,?,?)',(matricula,marca,color,modelo))
+        except Error as e:
+                    print(e)
+        except Exception:
+            print(f'Se produjo el siguiente error: {sys.exc_info()[0]}')
+        finally:
+            conn.close()  
         def ImpresionDeCocheRegistrado():
             frameRegistroCoche=LabelFrame(ventCarro, text="Registro de carro",font=('Arial',12),background='white')
             frameRegistroCoche.pack(fill='both', expand='yes', padx=20, pady=15)
@@ -121,7 +132,16 @@ def ventanaCliente():
         lblTexto=Label(frameCliente, text="SE HAN GUARDADO LOS REGISTROS",font=('Arial',10),fg='red', width=50)
         lblTexto.place(x=100,y=200)
         
-        
+        try:
+            with sqlite3.connect('Reparacion_Autos.db') as conn:
+                mi_cursor=conn.cursor()
+                mi_cursor.execute('INSERT INTO cliente VALUES(?,?,?,?,?)',(nombre,telefono,municipio,cp,colonia))
+        except Error as e:
+                    print(e)
+        except Exception:
+            print(f'Se produjo el siguiente error: {sys.exc_info()[0]}')
+        finally:
+            conn.close() 
         def ImpresionDeClienteRegistrado():
             frameRegistroCliente=LabelFrame(ventCliente,text='Datos Registrados', font=('Arial',12), background='white')
             frameRegistroCliente.pack(fill='both', expand='yes', padx=20, pady=15)
@@ -206,7 +226,16 @@ def ventanaReparacion():
         reparacion=[matricula,mecanico,fecha,tiempoRep]
         lblTexto=Label(frameReparacion, text="SE HAN GUARDADO LOS REGISTROS",font=('Arial',10),fg='red', width=50)
         lblTexto.place(x=100,y=200)
-
+        try:
+            with sqlite3.connect('Reparacion_Autos.db') as conn:
+                mi_cursor=conn.cursor()
+                mi_cursor.execute('INSERT INTO reparacion VALUES(?,?,?,?)',(matricula,mecanico,fecha,tiempoRep))
+        except Error as e:
+                    print(e)
+        except Exception:
+            print(f'Se produjo el siguiente error: {sys.exc_info()[0]}')
+        finally:
+            conn.close() 
         def ImpresionDeDatosReparacion():
             frameReparacionRegistrada=LabelFrame(ventReparacion,text='Reparacion', font=('Arial',12),background='white')
             frameReparacionRegistrada.pack(fill='both', expand='yes', padx=20, pady=15)
