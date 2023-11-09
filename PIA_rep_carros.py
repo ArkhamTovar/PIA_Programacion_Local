@@ -5,7 +5,19 @@ from sqlite3 import Error
 import sys
 
 
-
+try:
+    with sqlite3.connect("Reparacion_Autos.db") as conn:
+        mi_cursor = conn.cursor()
+        mi_cursor.execute("CREATE TABLE IF NOT EXISTS cliente (nombre TEXT NOT NULL,telefono TEXT NOT NULL, Municipio TEXT NOT NULL, Codigo_Postal TEXT NOT NULL, colonia TEXT NOT NULL);")
+        mi_cursor.execute("CREATE TABLE IF NOT EXISTS coche (matricula TEXT NOT NULL,marca TEXT NOT NULL, color TEXT NOT NULL,modelo TEXT NOT NULL);")
+        mi_cursor.execute("CREATE TABLE IF NOT EXISTS reparacion (matricula TEXT NOT NULL, nom_mecanico TEXT NOT NULL,fecha TEXT NOT NULL, tiempo_reparacion TEXT NOT NULL );")
+        print("Tablas creadas")
+except Error as e:
+    print (e)
+except:
+    print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+finally:
+    conn.close()
 
 def ventanaCarro():
     ventCarro=Tk()
@@ -238,12 +250,6 @@ def ventanaReparacion():
     
     
     
-
-
-
-
-
-
 
 ventanaBienvenida=Tk()
 ventanaBienvenida.title('Menu')
